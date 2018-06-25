@@ -4,14 +4,13 @@ const InputView = function () {
 
 };
 
-InputView.prototype.setupListener = function () {
+InputView.prototype.bindEvents = function () {
   const inputForm = document.querySelector('#wordcounter-form');
   inputForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
     const inputtedString = event.target.text.value;
     console.log(inputtedString);
-
+    PubSub.publish('InputView:string-inputted', inputtedString);
+    event.preventDefault();
   });
 };
 
